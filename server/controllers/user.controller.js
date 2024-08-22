@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import User from "../models/user.model.js";
 
 export const getUsersForSidebar = async (req, res) => {
