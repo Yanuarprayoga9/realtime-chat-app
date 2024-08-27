@@ -7,13 +7,12 @@ import userRoutes from "./routes/user.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import connectToMongoDB from "./db/db.js";
 import cors from "cors"
+import { app, server } from "./socket/socket.js";
 dotenv.config();
 
-connectToMongoDB();
 
-const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from this origin
+  origin: 'http://localhost:3000', // Allow requests from this origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 }));
 app.use(express.json());
@@ -27,6 +26,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoutes);
 
 const PORT = process.env.PORT || 5555;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
+  connectToMongoDB();
   console.log(`app running on port ${PORT}`);
 });
