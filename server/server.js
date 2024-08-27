@@ -12,7 +12,7 @@ dotenv.config();
 
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from this origin
+  origin: process.env.FRONTEND_URL, // Allow requests from this origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 }));
 app.use(express.json());
